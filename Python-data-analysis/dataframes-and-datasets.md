@@ -153,6 +153,78 @@ houses.tail(9)
 
 
 
+- There's a method on a dataframe called "info". 
 
+
+```
+houses.info()
+```
+
+
+![dataframe-info](/pictures/python/dataframes/dataframe-info.PNG "dataframe info")
+
+
+- Now, let's look at a new dataset of Titanic passenger list.
+
+
+```
+titanic = pd.read_csv("DataAnalysis/data/titanic.csv")
+titanic.head()
+```
+
+
+![titanic-dataset](/pictures/python/dataframes/titanic-dataset.PNG "titanic dataset")
+
+
+- But when we try to get Netflix dataset using the same method, we get an error. Because the Netflix dataset has different seprators than commas.
+
+
+![netflix-error](/pictures/python/dataframes/netflix-error.PNG "netflix error")
+
+
+- In this case, we need to specify the delimiter of that CSV file so that Python knows the actual seprators are not commas but pipe characters(|).
+
+
+```
+netflix = pd.read_csv("DataAnalysis/data/netflix_titles.csv", sep = "|")
+```
+
+
+![specified-delimiter](/pictures/python/dataframes/specified-delimiter.PNG "specified delimiters")
+
+
+- And you see that the zeroth column is incrementing by 1. You can use this as the table's index column. To do that:
+
+
+```
+netflix = pd.read_csv("DataAnalysis/data/netflix_titles.csv", sep="|", index_col = 0)
+netflix.head(10)
+```
+
+
+![index-col](/pictures/python/dataframes/index-col.PNG "index columm")
+
+
+- Now, let's experiment with tsv file, which is separated by tab(\t). 
+
+
+```
+pd.read_csv("DataAnalysis/data/movie_titles.tsv", sep="\t")
+```
+
+
+![tab-separator](/pictures/python/dataframes/tab-separator.PNG "tab separator")
+
+
+- But the table doesn't have headers. We will add headers to the table using a variable:
+
+
+```
+labels = ['id', 'title', 'year', 'imdb_rating', 'imdb_id', 'genres']
+pd.read_csv("DataAnalysis/data/movie_titles.tsv", sep="\t", names = labels)
+```
+
+
+![names-headers](/pictures/python/dataframes/names-headers.PNG "names headers")
 
 
