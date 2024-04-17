@@ -1,7 +1,7 @@
 ### [Source of this study material : Python Data Analysis and Visualization Master Class by Colt Steele](https://www.udemy.com/course/python-data-analysis-visualization/)
 
 
-## Basic Data Computations
+## Basic Dataframe Computations
 
 - dataframe.min() will get you the minimum values of each column of the entire dataframe.
 
@@ -95,5 +95,16 @@ titanic.describe(include = ["object", "int64"])
 
 
 ![describe-netflix](/pictures/python/basic-dataframe-computations/describe-netflix.PNG "describe netflix")
+
+
+- The include parameter is useful when you are looking for the unique number of user ids or names from the dataframe. In the bestsellers dataset, use describe method while icluding object only. Then it will give you the number of unique authors.
+
+
+```
+bestsellers.describe(include=["object"])
+```
+
+
+![descriptive-statistics-on-string-values](/pictures/python/basic-dataframe-computations/desriptive-statistics-on-string-values.PNG "descriptive statistics on string values")
 
 
