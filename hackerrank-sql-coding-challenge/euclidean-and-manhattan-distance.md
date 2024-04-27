@@ -29,7 +29,7 @@
 ![euclidean-distance-formula](/pictures/hackerrank-sql-coding/euclidean-and-manhattan-distance/euclidean-distance-formula.PNG "euclidean distance formula")
 
 
-- The AC squared is equal to the squared value of (x2 - x1) and the squared value of (y2 - y1). This is what Euclidean distance means.
+- The AC squared is equal to the square of (x2 - x1) and the square of (y2 - y1). This is what Euclidean distance means.
 
 
 - Then, what is Manhattan Distance?
