@@ -50,3 +50,6 @@ order by start_date) as date_group
 group by date_group) as final_data
 order by num_count, start_date
 ```
+
+
+![postgresql-not-using-variable-but-row-number](/pictures/hackerrank-sql-coding/medium-level-challenge-two/postgresql-not-using-variable-but-row-number.PNG "postgresql not using variable but row number")
