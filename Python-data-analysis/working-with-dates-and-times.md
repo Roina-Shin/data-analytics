@@ -188,3 +188,115 @@ ufo.sort_values("time_before_reported", ascending=False)
 [dt-days-for-timedelta](/pictures/python/working-with-dates-and-times/dt-days-for-timedelta.PNG "dt days for timedelta")
 
 
+
+### Excercise
+
+- Find the date when there were the most number of house sales.
+
+
+```
+houses["date"].value_counts()
+houses["date"].mode()[0]
+
+houses[houses["date"] == houses["date"].mode()[0]]
+```
+
+![mode-value-and-plug-into-dataframe](/pictures/python/working-with-dates-and-times/mode-value-and-plug-into-dataframe.PNG "mode value and plug that into the dataframe")
+
+
+
+- Then we will see the distribution of years in the dataframe using a pie chart.
+
+
+```
+houses["date"].dt.year.value_counts().plot(kind="pie")
+```
+
+
+![plot-kind-pie](/pictures/python/working-with-dates-and-times/plot-kind-pie.PNG "plot kind pie")
+
+
+- Next, find all the homes sold in 2014, sorted from earliest to latest.
+
+
+```
+houses[houses["date"].dt.year == 2014].sort_values("date", ascending=True)
+```
+
+
+![tweenty-fourteen](/pictures/python/working-with-dates-and-times/twenty-fourteen.PNG "twenty fourteen")
+
+
+- Now, count up the number of sales that took place in each month of the year.
+
+
+```
+one_year = houses[houses["date"].between("2014-05-01", "2015-05-01")].sort_values("date")
+one_year["date"].dt.month.value_counts()
+```
+
+
+![dt-month-value-counts](/pictures/python/working-with-dates-and-times/dt-month-value-counts.PNG "dt month value counts")
+
+
+- I'll also plot the result by using a bar chart and also use **sort_index()** method.
+
+
+```
+one_year["date"].dt.month.value_counts().sort_index().plot(kind="bar")
+```
+
+![value-counts-sort-index-plot](/pictures/python/working-with-dates-and-times/value-counts-and-sort-index-plot.PNG "value counts + sort index + plot")
+
+
+- **isocalendar()** function can be used to return **week number**. 
+
+
+```
+houses["date"].dt.isocalendar().week.value_counts().sort_index().plot()
+```
+
+
+![iso-calendar-week-value-counts](/pictures/python/working-with-dates-and-times/isocalendar-week-value-counts.PNG "isocalendar week value_counts")
+
+
+- Create a bar plot showing the total number of sales that took place in December, January, and February.
+
+
+```
+houses[houses["date"].dt.month.isin([12, 1, 2])]
+```
+
+```
+houses[houses["date"].dt.month.isin([12, 1, 2])]["date"].dt.month.value_counts().plot(kind="bar")
+```
+
+
+![monsth-isin](/pictures/python/working-with-dates-and-times/month-isin.PNG "month isin()")
+
+
+- We can also use **.dt** to see the quater of the year as well.
+
+
+```
+one_year = houses[houses["date"].between("2014-05-01", "2015-05-01")]
+one_year
+
+waterfront = one_year[one_year.waterfront == 1]
+waterfront["date"].dt.quarter
+```
+
+![dt-quarter](/pictures/python/working-with-dates-and-times/dt-quarter.PNG "dt quarter")
+
+
+- Describe the result using a bar chart to show the number of waterfront home sales per quarter.
+
+
+```
+waterfront["date"].dt.quarter.value_counts().plot(kind="bar")
+```
+
+
+![quarter-value-counts](/pictures/python/working-with-dates-and-times/quarter-value-counts.PNG "quarter value counts")
+
+
