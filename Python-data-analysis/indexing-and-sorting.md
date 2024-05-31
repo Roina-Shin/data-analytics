@@ -1,3 +1,6 @@
+### [Source of this study material : Python Data Analysis and Visualization Master Class by Colt Steele](https://www.udemy.com/course/python-data-analysis-visualization/)
+
+
 ## Indexes in depth
 
 - Both dataframe and series are **indexed**. In other words, each row in a dataframe or series has a label. We call that the index.
