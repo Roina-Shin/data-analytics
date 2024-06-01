@@ -179,3 +179,95 @@ pops[pops.index.get_level_values(0).str[1]  == "A"]
 
 
 ![using-get_level_values()-method-with-str-function](/pictures/python/hierarchical-indexing/get_level_values-str-function.PNG "using get_level_values() method with str function")
+
+
+
+## ustack() and stack() methods
+
+- We have a dataframe like below:
+
+
+![pops-dataframe](/pictures/python/hierarchical-indexing/pops-dataframe.PNG "pops dataframe")
+
+
+- If we do **pops.unstack()**, it basically takes the second level and turn them into the columns.
+
+
+```
+pops.unstack()
+```
+
+
+![pops-unstack](/pictures/python/hierarchical-indexing/pops-unstack.PNG "pops ustack")
+
+
+- Or, you can provide **the level as a parameter** for the unstack() method:
+
+
+```
+pops.unstack(level=0)
+```
+
+
+![pops-unstack-specifying-level](/pictures/python/hierarchical-indexing/unstck-specifying-level.PNG "unstack specifying level")
+
+
+- Also, you can use **stack()** method to invert the operation of the unstack() method.
+
+
+```
+unstacked = pops.unstack(level=0)
+
+unstacked.stack(level="state")
+```
+
+
+![stack-method](/pictures/python/hierarchical-indexing/stack-method.PNG "stack method")
+
+
+## Plotting with unstack()
+
+- Let's first create a dataframe with a hierarchical index. 
+
+
+```
+titanic.groupby(["pclass", "sex"]).aggregate({"age": "mean", "fare": "mean"})
+```
+
+
+![dataframe-with-hierarchical-index](/pictures/python/hierarchical-indexing/dataframe-with-hierarchical-index.PNG "dataframe with hierarchical index")
+
+
+- And if we **unstack()** the second level and plot on the dataset, we get this bar plot that is easily understandable:
+
+
+```
+titanic.groupby(["pclass", "sex"]).aggregate({"age": "mean"}).unstack().plot(kind="bar")
+```
+
+
+![unstack-and-plot](/pictures/python/hierarchical-indexing/unstack-and-plot.PNG "unstack and plot")
+
+
+- We can also **unstack()** the table with the level we want. Just specify it as a parameter:
+
+
+```
+titanic.groupby(["pclass", "sex"]).aggregate({"age": "mean"}).unstack(level="pclass").plot(kind="bar")
+```
+
+
+![unstack-specifying-level2](/pictures/python/hierarchical-indexing/unstack-specifying-level2.PNG "unstack specifying level2")
+
+
+- You can **unstack()** the level and rename the columns after that by using **columns={}** parameter.
+
+
+```
+titanic.groupby(["sex", "survived"]).aggregate({"age": "mean"}).unstack().rename(columns={0: "survived", 1: "passed away"})
+```
+
+
+![rename-columns](/pictures/python/hierarchical-indexing/rename-columns.PNG "rename columns")
+
+
